@@ -549,8 +549,8 @@ void DsoWidget::updateMarkerDetails() {
             cursorDataGrid->updateInfo( unsigned( index ), true,
                                         scope->voltage[ channel ].cursor.shape != DsoSettingsScopeCursor::NONE ? tr( "ON" )
                                                                                                                : tr( "OFF" ),
-                                        valueToString( fabs( p1.x() - p0.x() ) * scope->horizontal.timebase, UNIT_SECONDS, 4 ),
-                                        valueToString( fabs( p1.y() - p0.y() ) * scope->gain( channel ), UNIT_VOLTS, 4 ) );
+                                        QString("Δt: %1").arg( valueToString( fabs( p1.x() - p0.x() ) * scope->horizontal.timebase, UNIT_SECONDS, 4 ) ),
+                                        QString("ΔV: %1").arg( valueToString( fabs( p1.y() - p0.y() ) * scope->gain( channel ), UNIT_VOLTS, 4 ) ) );
         } else {
             cursorDataGrid->updateInfo( unsigned( index ), false );
         }
@@ -564,8 +564,8 @@ void DsoWidget::updateMarkerDetails() {
             cursorDataGrid->updateInfo(
                 unsigned( index ), true,
                 scope->spectrum[ channel ].cursor.shape != DsoSettingsScopeCursor::NONE ? tr( "ON" ) : tr( "OFF" ),
-                valueToString( fabs( p1.x() - p0.x() ) * scope->horizontal.frequencybase, UNIT_HERTZ, 4 ),
-                valueToString( fabs( p1.y() - p0.y() ) * scope->spectrum[ channel ].magnitude, UNIT_DECIBEL, 4 ) );
+                QString("Δf: %1").arg( valueToString( fabs( p1.x() - p0.x() ) * scope->horizontal.frequencybase, UNIT_HERTZ, 4 ) ),
+                QString("ΔdB: %1").arg( valueToString( fabs( p1.y() - p0.y() ) * scope->spectrum[ channel ].magnitude, UNIT_DECIBEL, 4 ) ) );
         } else {
             cursorDataGrid->updateInfo( unsigned( index ), false );
         }
